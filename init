@@ -45,7 +45,7 @@ curl -L https://snapshot.validatorvn.com/initia/addrbook.json > $HOME/.initia/co
 wget -O $HOME/.initia/config/genesis.json https://testnet-files.itrocket.net/initia/genesis.json
 
 sed -i -e "s|^seeds *=.*|seeds = \"3f472746f46493309650e5a033076689996c8881@initia-testnet.rpc.kjnodes.com:17959\"|" $HOME/.initia/config/config.toml
-PEERS="aee7083ab11910ba3f1b8126d1b3728f13f54943@initia-testnet-peer.itrocket.net:11656,2bfad62fa5ba7cc91af4e19ee8d1356997a01079@84.247.166.24:51656,e6a35b95ec73e511ef352085cb300e257536e075@37.252.186.213:26656,07632ab562028c3394ee8e78823069bfc8de7b4c@37.27.52.25:19656,b4778656f255169b8b1d660b6af3a0df68d68e65@176.57.189.36:15656,54d2302155d1bd2a95354ea1d54e196db70a5361@84.46.251.215:656,767fdcfdb0998209834b929c59a2b57d474cc496@207.148.114.112:26656,093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,5f934bd7a9d60919ee67968d72405573b7b14ed0@65.21.202.124:29656,e15f6e83d7e35c12f99476674137f3edd1865654@161.97.143.182:16656"
+PEERS="40d3f977d97d3c02bd5835070cc139f289e774da@168.119.10.134:26313,841c6a4b2a3d5d59bb116cc549565c8a16b7fae1@23.88.49.233:26656,e6a35b95ec73e511ef352085cb300e257536e075@37.252.186.213:26656,2a574706e4a1eba0e5e46733c232849778faf93b@84.247.137.184:53456,ff9dbc6bb53227ef94dc75ab1ddcaeb2404e1b0b@178.170.47.171:26656,edcc2c7098c42ee348e50ac2242ff897f51405e9@65.109.34.205:36656,07632ab562028c3394ee8e78823069bfc8de7b4c@37.27.52.25:19656,028999a1696b45863ff84df12ebf2aebc5d40c2d@37.27.48.77:26656,140c332230ac19f118e5882deaf00906a1dba467@185.219.142.119:53456,1f6633bc18eb06b6c0cab97d72c585a6d7a207bc@65.109.59.22:25756,065f64fab28cb0d06a7841887d5b469ec58a0116@84.247.137.200:53456,767fdcfdb0998209834b929c59a2b57d474cc496@207.148.114.112:26656,093e1b89a498b6a8760ad2188fbda30a05e4f300@35.240.207.217:26656,12526b1e95e7ef07a3eb874465662885a586e095@95.216.78.111:26656"
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$PEERS'"|' $HOME/.initia/config/config.toml
 
 sed -i \
@@ -84,8 +84,8 @@ sudo systemctl enable initiad.service
 cp $HOME/.initia/data/priv_validator_state.json $HOME/.initia/priv_validator_state.json.backup
 initiad tendermint unsafe-reset-all --home $HOME/.initia --keep-addr-book
 
-curl -O https://snapshots.polkachu.com/testnet-snapshots/initia/initia_170136.tar.lz4
-lz4 -d -c ./initia_170136.tar.lz4 | tar -xf - -C $HOME/.initia
+curl -O https://snapshots.bwarelabs.com/initia/testnet/initia20240517.tar.lz4
+lz4 -d -c ./initia20240517.tar.lz4 | tar -xf - -C $HOME/.initia
 
 mv $HOME/.initia/priv_validator_state.json.backup $HOME/.initia/data/priv_validator_state.json
 sudo systemctl start initiad
